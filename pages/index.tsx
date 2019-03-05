@@ -3,8 +3,14 @@ import Head from 'next/head';
 import Header from "../components/Header";
 
 export default class Index extends PureComponent<any, any> {
+    private static url = 'https://www.youtube.com/embed/Tyb47Bteohg';
+    
+    static async getInitialProps() {
+        return {playerUrl: this.url};
+    }
+
     onClick = () => {
-        if (this.props.handlePlayerUrlChange) { this.props.handlePlayerUrlChange('https://www.youtube.com/embed/Tyb47Bteohg'); }
+        if (this.props.handlePlayerUrlChange) { this.props.handlePlayerUrlChange(Index.url); }
     }
 
     render() {
@@ -16,7 +22,7 @@ export default class Index extends PureComponent<any, any> {
                 </Head>
                 <div className="body">
                     <Header/>
-                    Home
+                    <h1>Home</h1>
                     <a onClick={this.onClick}>Change player url</a>
                 </div>
             </>

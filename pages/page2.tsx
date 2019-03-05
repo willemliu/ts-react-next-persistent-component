@@ -2,9 +2,15 @@ import React, { PureComponent } from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
 
-export default class Index extends PureComponent<any, any> {
+export default class Page2 extends PureComponent<any, any> {
+    private static url = 'https://www.youtube.com/embed/1roy4o4tqQM';
+    
+    static async getInitialProps() {
+        return {playerUrl: this.url};
+    }
+
     onClick = () => {
-        if (this.props.handlePlayerUrlChange) { this.props.handlePlayerUrlChange('https://www.youtube.com/embed/1roy4o4tqQM'); }
+        if (this.props.handlePlayerUrlChange) { this.props.handlePlayerUrlChange(Page2.url); }
     }
 
     render() {
@@ -16,7 +22,7 @@ export default class Index extends PureComponent<any, any> {
                 </Head>
                 <div className="body">
                     <Header/>
-                    Page 2
+                    <h1>Page 2</h1>
                     <a onClick={this.onClick}>Change player url</a>
                 </div>
             </>
