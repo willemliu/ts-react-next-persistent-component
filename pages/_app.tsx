@@ -35,11 +35,12 @@ export default class PersistentApp extends App {
                         cursor: pointer;
                         display: block;
                         text-decoration: underline;
+                        padding: 1rem 0;
                     }
                 `}</style>
 
-                <YoutubeEmbed url={this.state.playerUrl}/>
                 <Component {...pageProps} handlePlayerUrlChange={this.handlePlayerUrlChange}/>
+                <YoutubeEmbed url={this.state.playerUrl}/>
             </Container>
         );
     }
