@@ -28,7 +28,7 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
     }
 
     componentDidUpdate(prevProps: any) {
-        if (this.props.youtubeId !== prevProps.youtubeId) {
+        if (this.props.youtubeId !== prevProps.youtubeId && this.player) {
             this.player.cueVideoById({videoId: this.props.youtubeId});
         }
     }
