@@ -49,7 +49,7 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
     render() {
         return (
             <>
-                <iframe id="player" width="640" height="390" src={`http://www.youtube.com/embed/${this.state.youtubeId}?enablejsapi=1`} frameBorder="0"/>
+                <iframe id="player" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.youtubeId}?enablejsapi=1`} frameBorder="0"/>
             </>
         );
     }
