@@ -6,7 +6,8 @@ declare var process: any;
 
 export default class PersistentApp extends App {
     state: any = {
-        playerUrl: "https://www.youtube.com/embed/Tyb47Bteohg",
+        playing: false,
+        youtubeId: "Tyb47Bteohg",
         useState: !!process.browser // We should use props when rendered on server. Use state when rendered in client.
     }
 
@@ -20,8 +21,19 @@ export default class PersistentApp extends App {
         return { pageProps }
     }
 
-    handlePlayerUrlChange = (playerUrl: string) => {
-        this.setState({playerUrl, useState: true});
+    handlePlaying = () => {
+        this.setState({playing: true});
+    }
+
+    handleStopped = () => {
+        this.setState({playing: false});
+    }
+
+    handleYoutubeIdChange = (youtubeId: string) => {
+        this.setState({
+            youtubeId: youtubeId,
+            useState: true
+        });
     }
 
     render() {
@@ -42,10 +54,9 @@ export default class PersistentApp extends App {
                     }
                 `}</style>
 
-                <Component {...pageProps} handlePlayerUrlChange={this.handlePlayerUrlChange}/>
-                <YoutubeEmbed url={this.state.useState ? this.state.playerUrl : pageProps.playerUrl}/>
+                <Component {...pageProps} handleYoutubeIdChange={this.handleYoutubeIdChange} playing={this.state.playing}/>
+                <YoutubeEmbed youtubeId={this.state.useState ? this.state.youtubeId : pageProps.youtubeId} onPlaying={this.handlePlaying} onStopped={this.handleStopped}/>
             </Container>
         );
     }
 }
-

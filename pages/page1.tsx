@@ -3,14 +3,20 @@ import Head from 'next/head';
 import Header from "../components/Header";
 
 export default class Page1 extends PureComponent<any, any> {
-    private static url = 'https://www.youtube.com/embed/MfD67KCFxqI';
+    private static youtubeId = 'MfD67KCFxqI';
     
     static async getInitialProps() {
-        return {playerUrl: this.url};
+        return {youtubeId: this.youtubeId};
     }
 
-    onClick = () => {
-        if (this.props.handlePlayerUrlChange) { this.props.handlePlayerUrlChange(Page1.url); }
+    componentDidMount() {
+        if (!this.props.playing) {
+            this.changeYoutubeId();
+        }
+    }
+
+    changeYoutubeId = () => {
+        if (this.props.handleYoutubeIdChange) { this.props.handleYoutubeIdChange(Page1.youtubeId); }
     }
 
     render() {
@@ -23,7 +29,7 @@ export default class Page1 extends PureComponent<any, any> {
                 <div className="body">
                     <Header/>
                     <h1>Page 1</h1>
-                    <a onClick={this.onClick}>Change player url</a>
+                    <a onClick={this.changeYoutubeId}>Change video {this.props.youtubeId}</a>
                 </div>
             </>
         );
