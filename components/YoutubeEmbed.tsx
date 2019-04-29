@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import YoutubeStore from "../stores/YoutubeStore";
 
 declare var YT: any;
 declare var window: any;
@@ -36,11 +37,11 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
     onPlayerStateChange = (event: any) => {
         switch (event.data) {
             case YT.PlayerState.PLAYING:
-                this.props.onPlaying();
+                YoutubeStore.setIsPlaying();
                 break;
             case YT.PlayerState.PAUSED:
             case YT.PlayerState.ENDED:
-                this.props.onStopped();
+                YoutubeStore.setIsPaused();
                 break;
             default:
         }
@@ -48,9 +49,7 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
 
     render() {
         return (
-            <>
-                <iframe id="player" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.youtubeId}?enablejsapi=1`} frameBorder="0"/>
-            </>
+            <iframe id="player" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.youtubeId}?enablejsapi=1`} frameBorder="0"/>
         );
     }
 }

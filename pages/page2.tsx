@@ -1,9 +1,17 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
+import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
+import { ComponentBase } from "resub";
 
-export default class Page2 extends PureComponent<any, any> {
+export default class Page2 extends ComponentBase<any, YoutubeState> {
     private static youtubeId = '1roy4o4tqQM';
+    
+    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
+        return {
+            youtubeId: YoutubeStore.getYoutubeId()
+        }
+    }
     
     static async getInitialProps() {
         return {youtubeId: this.youtubeId};
@@ -16,7 +24,7 @@ export default class Page2 extends PureComponent<any, any> {
     }
 
     changeYoutubeId = () => {
-        if (this.props.handleYoutubeIdChange) { this.props.handleYoutubeIdChange(Page2.youtubeId); }
+        YoutubeStore.setYoutubeId(Page2.youtubeId);
     }
 
     render() {
@@ -26,10 +34,10 @@ export default class Page2 extends PureComponent<any, any> {
                     <title>BNR Page 2 - persistent component</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 </Head>
+                <Header/>
                 <div className="body">
-                    <Header/>
                     <h1>Page 2</h1>
-                    <a onClick={this.changeYoutubeId}>Change video {this.props.youtubeId}</a>
+                    <a onClick={this.changeYoutubeId}>Change video {this.props.youtubeId} : {this.state.youtubeId}</a>
                 </div>
             </>
         );
