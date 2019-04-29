@@ -5,7 +5,7 @@ import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
 
 export default class Index extends ComponentBase<any, YoutubeState> {
-    private static youtubeId = 'Tyb47Bteohg';
+    private static youtubeId = 'dxq-7RcC0Tc';
     
     protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
         return {

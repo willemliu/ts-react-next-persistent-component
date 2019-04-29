@@ -7,7 +7,7 @@ export default class Header extends PureComponent<any, any> {
         return (
             <>
                 <p>This is an example project showcasing the use of <a href="https://nextjs.org/" target="_blank">Next.JS</a> to create a persistant player which survives navigation.</p>
-                <p>Try it out by starting playing the video and then using the buttons to navigate to another page. The video should keep playing.</p>
+                <p>Try it out by playing the video and then using the buttons to navigate to another page. The video should keep playing without interruptions.</p>
                 <p>If the video is not started or is paused again you can navigate to another page then the video url is updated with the one corresponding to that page.</p>
                 <p>The player state is being maintained using <a href="https://github.com/Microsoft/ReSub" target="_blank">ReSub</a>.</p>
 
