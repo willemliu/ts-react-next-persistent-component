@@ -37,7 +37,9 @@ export default class Page2 extends ComponentBase<any, YoutubeState> {
                 <Header/>
                 <div className="body">
                     <h1>Page 2</h1>
-                    <a onClick={this.changeYoutubeId}>Change video {this.props.youtubeId} : {this.state.youtubeId}</a>
+                    {this.state.youtubeId && Page2.youtubeId !== this.state.youtubeId ? (
+                        <a onClick={this.changeYoutubeId}>Change video to: {Page2.youtubeId}</a>
+                    ) : null}
                 </div>
             </>
         );

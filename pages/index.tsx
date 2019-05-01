@@ -37,7 +37,9 @@ export default class Index extends ComponentBase<any, YoutubeState> {
                 <Header/>
                 <div className="body">
                     <h1>Home</h1>
-                    <a onClick={this.changeYoutubeId}>Change video {this.props.youtubeId} : {this.state.youtubeId}</a>
+                    {this.state.youtubeId && Index.youtubeId !== this.state.youtubeId ? (
+                        <a onClick={this.changeYoutubeId}>Change video to: {Index.youtubeId}</a>
+                    ) : null}
                 </div>
             </>
         );
