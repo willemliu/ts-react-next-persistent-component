@@ -12,13 +12,13 @@ export default class Header extends PureComponent<any, any> {
                 <p>The player state is being maintained using <a href="https://github.com/Microsoft/ReSub" target="_blank">ReSub</a>.</p>
 
                 <div>
-                    <Link href="/">
+                    <Link prefetch={true} href="/">
                         <button>Home</button>
                     </Link>
-                    <Link href="/page1">
+                    <Link prefetch={true} href="/page1">
                         <button>Page 1</button>
                     </Link>
-                    <Link href="/page2">
+                    <Link prefetch={true} href="/page2">
                         <button>Page 2</button>
                     </Link>
                     <style jsx={true}>{`
