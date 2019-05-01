@@ -5,13 +5,13 @@ declare var YT: any;
 declare var window: any;
 
 export default class YoutubeEmbed extends PureComponent<any, any> {
-    private player: any;
     state: any = {
         youtubeId: this.props.youtubeId
     };
+    private player: any;
 
     componentDidMount() {
-        var tag = document.createElement('script');
+        const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const head = document.querySelector('head');
         if (head) {
@@ -21,8 +21,8 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
         window.onYouTubeIframeAPIReady = () => {
             this.player = new YT.Player('player', {
                 events: {
-                    'onReady': () => console.log,
-                    'onStateChange': this.onPlayerStateChange
+                    onReady: () => console.log,
+                    onStateChange: this.onPlayerStateChange
                 }
             });
         };
@@ -33,7 +33,7 @@ export default class YoutubeEmbed extends PureComponent<any, any> {
             this.player.cueVideoById({videoId: this.props.youtubeId});
         }
     }
-    
+
     onPlayerStateChange = (event: any) => {
         switch (event.data) {
             case YT.PlayerState.PLAYING:

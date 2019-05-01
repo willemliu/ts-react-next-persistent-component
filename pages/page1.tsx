@@ -5,17 +5,11 @@ import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
 
 export default class Page1 extends ComponentBase<any, YoutubeState> {
-    private static youtubeId = 'MfD67KCFxqI';
-    
-    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
-        return {
-            youtubeId: YoutubeStore.getYoutubeId()
-        }
-    }
-    
     static async getInitialProps() {
         return {youtubeId: this.youtubeId};
     }
+
+    private static youtubeId = 'MfD67KCFxqI';
 
     componentDidMount() {
         if (!this.props.playing) {
@@ -43,5 +37,11 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
                 </div>
             </>
         );
+    }
+
+    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
+        return {
+            youtubeId: YoutubeStore.getYoutubeId()
+        };
     }
 }

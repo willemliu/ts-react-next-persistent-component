@@ -21,7 +21,7 @@ export default class Header extends PureComponent<any, any> {
                     <Link href="/page2">
                         <button>Page 2</button>
                     </Link>
-                    <style jsx>{`
+                    <style jsx={true}>{`
                         button {
                             margin-right: .5rem;
                             padding: .5rem 1.5rem;

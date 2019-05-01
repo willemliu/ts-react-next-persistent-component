@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.prepare()
 .then(() => {
   const server = express();
-  
+
   server.use(compression());
 
   server.get('*', (req, res) => {
@@ -19,7 +19,7 @@ app.prepare()
   });
 
   server.listen(port, (err) => {
-    if (err) throw err;
+    if (err) { throw err; }
     console.log(`> Ready on http://localhost:${port}`);
   });
 })
