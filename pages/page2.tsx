@@ -26,7 +26,6 @@ export default class Page2 extends ComponentBase<any, YoutubeState> {
             <>
                 <Head>
                     <title>BNR Page 2 - persistent component</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 </Head>
                 <Header/>
                 <div className="body">
