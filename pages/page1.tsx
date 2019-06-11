@@ -6,10 +6,10 @@ import { ComponentBase } from "resub";
 
 export default class Page1 extends ComponentBase<any, YoutubeState> {
     static async getInitialProps() {
-        return {youtubeId: this.youtubeId};
+        return {
+            youtubeId: 'MfD67KCFxqI'
+        };
     }
-
-    private static youtubeId = 'MfD67KCFxqI';
 
     componentDidMount() {
         if (!this.props.playing) {
@@ -18,7 +18,7 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
     }
 
     changeYoutubeId = () => {
-        YoutubeStore.setYoutubeId(Page1.youtubeId);
+        YoutubeStore.setYoutubeId(this.state.initialYoutubeId);
     }
 
     render() {
@@ -30,8 +30,8 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
                 <Header/>
                 <div className="body">
                     <h1>Page 1</h1>
-                    {this.state.youtubeId && Page1.youtubeId !== this.state.youtubeId ? (
-                        <a onClick={this.changeYoutubeId}>Change video to: {Page1.youtubeId}</a>
+                    {this.state.initialYoutubeId !== this.state.youtubeId ? (
+                        <a onClick={this.changeYoutubeId}>Change video to: {this.state.initialYoutubeId}</a>
                     ) : null}
                 </div>
             </>
@@ -40,6 +40,7 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
 
     protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
         return {
+            initialYoutubeId: 'MfD67KCFxqI',
             youtubeId: YoutubeStore.getYoutubeId()
         };
     }

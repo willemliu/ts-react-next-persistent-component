@@ -1,6 +1,9 @@
 import React, { PureComponent } from "react";
 import Link from 'next/link';
 
+/**
+ * Header component contains description about this App and the navigation links.
+ */
 export default class Header extends PureComponent<any, any> {
 
     render() {
@@ -11,33 +14,60 @@ export default class Header extends PureComponent<any, any> {
                 <p>If the video is not started or is paused again you can navigate to another page then the video url is updated with the one corresponding to that page.</p>
                 <p>The player state is being maintained using <a rel="noopener" href="https://github.com/Microsoft/ReSub" target="_blank">ReSub</a>.</p>
 
-                <div>
-                    <Link prefetch={true} href="/">
+                <div className="button-container">
+                    <Link prefetch href="/">
                         <button>Home</button>
                     </Link>
-                    <Link prefetch={true} href="/page1">
+                    <Link prefetch href="/page1">
                         <button>Page 1</button>
                     </Link>
-                    <Link prefetch={true} href="/page2">
+                    <Link prefetch href="/page2">
                         <button>Page 2</button>
                     </Link>
-                    <style jsx={true}>{`
-                        button {
-                            margin-right: .5rem;
-                            padding: .5rem 1.5rem;
-                            background-color: #49a4a2;
-                            color: #ffeadb;
-                            font-family: ProximaNovaBold, sans-serif;
-                            border: none;
-                            border-radius: unset;
-                            border-right: 1px solid rgba(0,0,0,0.1);
-                            box-shadow: 0 -2px 0 0 rgba(0,0,0,0.2) inset;
-                            line-hHeight: 1.2;
-                            font-size: 1rem;
-                            cursor: pointer;
-                        }
-                    `}</style>
                 </div>
+
+                <style jsx>{`
+                    .button-container {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    button {
+                        outline: none;
+                        position: relative;
+                        min-height: 2rem;
+                        display: inline-block;
+                        align-items: center;
+                        vertical-align: middle;
+                        font-size: 1rem;
+                        line-height: 1;
+                        color: #FFFFFF;
+                        text-decoration: none;
+                        cursor: pointer;
+                        padding: 0 1rem;
+                        border: none;
+                        text-align: center;
+                        background-color: #677381;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px -2px 0px 0px inset;
+                        border-radius: 2px;
+                        transition: background-color .1s;
+                        font-family: 'ProximaNovaBold', sans-serif;
+                        font-weight: normal;
+                    }
+                    button:hover {
+                        background-color: #2e3843;
+                    }
+                    button.m {
+                        min-height: 2.5rem;
+                    }
+                    button.l {
+                        font-size: 1.25rem;
+                        padding: 0 1.5rem;
+                        min-height: 3.5rem;
+                    }
+                    button:active {
+                        box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2) inset;
+                    }
+                `}</style>
             </>
         );
     }

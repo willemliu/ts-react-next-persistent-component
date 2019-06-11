@@ -6,19 +6,28 @@ import { ComponentBase } from "resub";
 declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
-    state: any = {
-        youtubeId: "Tyb47Bteohg"
-    };
+    state: any = {};
     private useState = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
 
     render() {
         const {Component, pageProps} = this.props;
         return (
             <>
-                <style jsx={true} global={true}>{`
+                <style jsx global>{`
                     html, body {
-                        padding: 0;
-                        margin: 0;
+                        display: flex;
+                        justify-content: space-around;
+                    }
+                    @media only screen and (min-width: 861px) {
+                        body {
+                            margin: 0;
+                            max-width: 800px;
+                        }
+                    }
+                    @media only screen and (min-width: 1280px) {
+                        body {
+                            max-width: 1024px;
+                        }
                     }
                     .body a {
                         cursor: pointer;
@@ -37,6 +46,7 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
     protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
         this.useState = initialBuild ? this.state.useState : true;
         return {
+            initialYoutubeId: '',
             youtubeId: YoutubeStore.getYoutubeId(),
             isPlaying: YoutubeStore.getIsPlaying()
         };

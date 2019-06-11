@@ -4,12 +4,13 @@ import Header from "../components/Header";
 import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
 
+/**
+ * Home page.
+ */
 export default class Index extends ComponentBase<any, YoutubeState> {
     static async getInitialProps() {
-        return {youtubeId: this.youtubeId};
+        return {youtubeId: 'dxq-7RcC0Tc'};
     }
-
-    private static youtubeId = 'dxq-7RcC0Tc';
 
     componentDidMount() {
         if (!this.props.playing) {
@@ -18,7 +19,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
     }
 
     changeYoutubeId = () => {
-        YoutubeStore.setYoutubeId(Index.youtubeId);
+        YoutubeStore.setYoutubeId(this.state.initialYoutubeId);
     }
 
     render() {
@@ -30,8 +31,8 @@ export default class Index extends ComponentBase<any, YoutubeState> {
                 <Header/>
                 <div className="body">
                     <h1>Home</h1>
-                    {this.state.youtubeId && Index.youtubeId !== this.state.youtubeId ? (
-                        <a onClick={this.changeYoutubeId}>Change video to: {Index.youtubeId}</a>
+                    {this.state.initialYoutubeId !== this.state.youtubeId ? (
+                        <a onClick={this.changeYoutubeId}>Change video to: {this.state.initialYoutubeId}</a>
                     ) : null}
                 </div>
             </>
@@ -40,6 +41,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
 
     protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
         return {
+            initialYoutubeId: 'dxq-7RcC0Tc',
             youtubeId: YoutubeStore.getYoutubeId()
         };
     }

@@ -2,9 +2,13 @@ import { StoreBase, AutoSubscribeStore, autoSubscribe } from 'resub';
 
 export interface YoutubeState {
     isPlaying?: boolean;
+    initialYoutubeId: string;
     youtubeId: string;
 }
 
+/**
+ * Global store for the Youtube player states.
+ */
 @AutoSubscribeStore
 class YoutubeStore extends StoreBase {
     private youtubeId: string = '';
