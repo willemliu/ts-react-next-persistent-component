@@ -1,14 +1,21 @@
 {
     "version": 2,
     "builds": [
-        { "src": "package.json", "use": "@now/next" }
+        { "src": "package.json", "use": "@now/next" },
+        { "src": "static/*", "use": "@now/static" }
     ],
     "routes":[{	
-        "src": "^/service-worker.js$",	
+        "src": "/service-worker.js",
         "dest": "/_next/static/service-worker.js",
         "headers": {
           "cache-control": "public, max-age=43200, immutable",
           "Service-Worker-Allowed": "/"
+        }
+    }, {
+        "src": "/static/(.*)",
+        "dest": "/_next/static/$1",
+        "headers": {
+          "cache-control": "public, max-age=43200, immutable"
         }
     }],
     "regions": ["bru"]

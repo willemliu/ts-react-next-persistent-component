@@ -14,6 +14,13 @@ app.prepare()
 
   server.use(compression());
 
+  server.get('/service-worker.js', (req, res) => {
+    const actualPage = '/post/_next/static/service-worker.js';
+    app.render(req, res, actualPage);
+  });
+
+  server.use('/static', express.static('static'));
+
   server.get('*', (req, res) => {
     return handle(req, res);
   });
