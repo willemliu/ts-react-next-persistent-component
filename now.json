@@ -1,8 +1,7 @@
 {
     "version": 2,
     "builds": [
-        { "src": "package.json", "use": "@now/next" },
-        { "src": "static/*", "use": "@now/static" }
+        { "src": "package.json", "use": "@now/next" }
     ],
     "routes":[{
         "src": "/service-worker.js",
