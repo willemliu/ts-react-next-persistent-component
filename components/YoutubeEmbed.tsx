@@ -1,5 +1,5 @@
 import {useAmp, withAmp} from 'next/amp';
-import React, { PureComponent, useEffect } from "react";
+import React, { useEffect } from "react";
 import YoutubeStore from "../stores/YoutubeStore";
 
 declare var YT: any;
