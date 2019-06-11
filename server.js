@@ -16,7 +16,7 @@ app.prepare()
   server.use(compression());
 
   server.get('/service-worker.js', (req, res) => {
-    const filePath = join(__dirname, '.next', '/static/service-worker.js')
+    const filePath = join(__dirname, '.next/static/service-worker.js')
     app.serveStatic(req, res, filePath);
   });
 
