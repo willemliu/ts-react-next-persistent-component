@@ -13,6 +13,7 @@ function Header(props: any) {
             <p>Try it out by playing the video and then using the buttons to navigate to another page. The video should keep playing without interruptions.</p>
             <p>If the video is not started or is paused again you can navigate to another page then the video url is updated with the one corresponding to that page.</p>
             <p>The player state is being maintained using <a rel="noopener" href="https://github.com/Microsoft/ReSub" target="_blank">ReSub</a>.</p>
+            <p>⚡AMP-ed version can be viewed by adding <i>?amp=1</i> to the end of the URL.</p>
 
             <div className="button-container">
                 {useAmp() ?

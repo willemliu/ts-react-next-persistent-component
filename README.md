@@ -6,6 +6,9 @@ However when you've started a video and then navigate to other pages then the vi
 When the video is paused and you navigate to a page with a different video then the video of that page will be loaded.
 Player state is handled using ReSub from Microsoft.
 
+## AMP support
+Add `?amp=1` to the end of the url to visit the AMP-ed page.
+
 # demo
 Azure: https://persistent-component.azurewebsites.net/
 Zeit Now: https://ts-react-next-persistent-component.willemliu.now.sh/
