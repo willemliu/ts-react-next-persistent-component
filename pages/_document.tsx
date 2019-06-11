@@ -18,6 +18,7 @@ export default class MyDocument extends Document {
             <meta name="description" content="This is an example project showcasing the use of Next.JS to create a persistant player which survives navigation"/>
             <link rel="manifest" href="/static/manifest.json" />
             <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
+            <script async type="text/javascript" src="/service-worker.js"/>
         </Head>
         <body>
             <Main />

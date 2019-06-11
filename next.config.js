@@ -1,6 +1,7 @@
 const withOffline = require('next-offline');
 const withTypescript = require("@zeit/next-typescript");
 const {PHASE_DEVELOPMENT_SERVER} = require("next/constants");
+const { join } = require('path');
 
 module.exports = withTypescript(withOffline({
     target: process.env.NOW_SERVERLESS === 'false' ? 'server' : 'serverless',
