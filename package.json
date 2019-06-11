@@ -29,13 +29,12 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "next": "^8.1.0",
+    "next-offline": "^4.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "resub": "^1.0.13",
-    "typescript": "^3.4.5"
-  },
-  "devDependencies": {
     "tslint": "^5.16.0",
-    "tslint-react": "^4.0.0"
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.5"
   }
 }
