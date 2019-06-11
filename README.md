@@ -7,4 +7,5 @@ When the video is paused and you navigate to a page with a different video then 
 Player state is handled using ReSub from Microsoft.
 
 # demo
-https://persistent-component.azurewebsites.net/
+Azure: https://persistent-component.azurewebsites.net/
+Zeit Now: https://ts-react-next-persistent-component.willemliu.now.sh/

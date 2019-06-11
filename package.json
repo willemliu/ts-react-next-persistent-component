@@ -2,9 +2,10 @@
   "name": "ts-react-persistent-component",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "next build",
+    "now-build": "next build",
+    "deploy": "now",
     "dev": "next",
     "export": "npm run build && next export",
     "lint": "tslint -p .",
