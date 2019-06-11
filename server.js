@@ -1,6 +1,7 @@
 const express = require('express');
 const compression = require('compression');
 const next = require('next');
+const { join } = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 console.log(process.env.NODE_ENV);
@@ -15,8 +16,8 @@ app.prepare()
   server.use(compression());
 
   server.get('/service-worker.js', (req, res) => {
-    const actualPage = '/post/_next/static/service-worker.js';
-    app.render(req, res, actualPage);
+    const filePath = join(__dirname, '.next', '/static/service-worker.js')
+    app.serveStatic(req, res, filePath);
   });
 
   server.use('/static', express.static('static'));
