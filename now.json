@@ -10,12 +10,6 @@
           "cache-control": "public, max-age=43200, immutable",
           "Service-Worker-Allowed": "/"
         }
-    },{
-      "src": "/static/(.*)",
-      "dest": "/_next/static/$1",
-      "headers": {
-        "cache-control": "public, max-age=43200, immutable"
-      }
     }],
     "regions": ["bru"]
 }
