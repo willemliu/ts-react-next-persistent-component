@@ -11,7 +11,7 @@
     "lint": "tslint -p .",
     "next": "next",
     "next:start": "next start",
-    "postinstall": "next build",
+    "postinstall": "cross-env NOW_SERVERLESS=false next build",
     "start": "cross-env NOW_SERVERLESS=false npm run now-build && cross-env NODE_ENV=production NOW_SERVERLESS=false node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
