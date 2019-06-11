@@ -9,7 +9,9 @@ import { ComponentBase } from "resub";
  */
 export default class Index extends ComponentBase<any, YoutubeState> {
     static async getInitialProps() {
-        return {youtubeId: 'dxq-7RcC0Tc'};
+        return {
+            youtubeId: 'dxq-7RcC0Tc'
+        };
     }
 
     componentDidMount() {
@@ -39,7 +41,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
         );
     }
 
-    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
+    protected _buildState(props: any, initialBuild: boolean): YoutubeState {
         return {
             initialYoutubeId: 'dxq-7RcC0Tc',
             youtubeId: YoutubeStore.getYoutubeId()

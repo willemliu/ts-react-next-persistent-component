@@ -38,7 +38,7 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
         );
     }
 
-    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
+    protected _buildState(props: any, initialBuild: boolean): YoutubeState {
         return {
             initialYoutubeId: 'MfD67KCFxqI',
             youtubeId: YoutubeStore.getYoutubeId()

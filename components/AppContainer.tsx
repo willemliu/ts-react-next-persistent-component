@@ -7,7 +7,7 @@ declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
     state: any = {};
-    private useState = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
+    private isServer = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
 
     render() {
         const {Component, pageProps} = this.props;
@@ -38,13 +38,13 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
                 `}</style>
 
                 <Component playing={this.state.isPlaying}/>
-                <YoutubeEmbed youtubeId={this.useState ? this.state.youtubeId : pageProps.youtubeId}/>
+                <YoutubeEmbed youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
             </>
         );
     }
 
-    protected _buildState(props: {}, initialBuild: boolean): YoutubeState {
-        this.useState = initialBuild ? this.state.useState : true;
+    protected _buildState(props: any, initialBuild: boolean): YoutubeState {
+        this.isServer = initialBuild ? this.state.useState : true;
         return {
             initialYoutubeId: '',
             youtubeId: YoutubeStore.getYoutubeId(),
