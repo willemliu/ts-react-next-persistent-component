@@ -1,4 +1,4 @@
-export default function handleMessage(payload: any) {
+export default function handleWebPush() {
     if (!Notification) {
         alert('Desktop notifications not available in your browser. Try Chromium.');
         return;
@@ -6,14 +6,14 @@ export default function handleMessage(payload: any) {
 
     if (Notification.permission !== "granted") {
         Notification.requestPermission();
-    } else if (payload) {
-        const notification = new Notification(`Push message - ${payload}`, {
+    } else {
+        const notification = new Notification(`Push message`, {
             icon: '/static/192x192.png',
-            body: payload,
+            body: 'Test push message'
         });
 
         notification.onclick = function () {
-            console.debug('Go to', payload);
+            console.debug('Go to', window.location.href);
             notification.close();
         };
     }
