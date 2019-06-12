@@ -28,7 +28,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
         return (
             <>
                 <Head>
-                    <title>BNR - persistent component</title>
+                    <title>BNR {this.state.youtubeId}- persistent component</title>
                 </Head>
                 <Header/>
                 <div className="body">

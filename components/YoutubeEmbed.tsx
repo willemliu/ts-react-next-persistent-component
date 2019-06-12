@@ -11,10 +11,17 @@ declare var window: any;
  */
 class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
     private player: any;
-    private playerReady: boolean = false;
-    private iframeApiReady: boolean = false;
+    state: any = {
+        playerReady: false,
+        iframeApiReady: false
+    };
 
     componentDidMount() {
+        window.onYouTubeIframeAPIReady = () => {
+            this.setState({iframeApiReady: true});
+            this.loadPlayer();
+        };
+
         // Initialize Youtube player.
         this.initPlayer();
     }
@@ -25,7 +32,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
             this.initPlayer();
         }
         // When the Youtube player is ready and youtubeId has changed.
-        if (this.props.youtubeId !== prevProps.youtubeId && this.playerReady) {
+        if (this.props.youtubeId !== prevProps.youtubeId && this.state.playerReady) {
             // If youtubeId is not empty we cue the new video. Otherwise we stop the player.
             if (this.props.youtubeId) {
                 this.player.cueVideoById({videoId: this.props.youtubeId});
@@ -40,13 +47,8 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
      * - onYouTubeIframeAPIReady must be true
      */
     initPlayer = () => {
-        if (this.iframeApiReady) {
+        if (this.state.iframeApiReady || YT.Player) {
             this.loadPlayer();
-        } else {
-            window.onYouTubeIframeAPIReady = () => {
-                this.iframeApiReady = true;
-                this.loadPlayer();
-            };
         }
     }
 
@@ -63,7 +65,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
             height: 390,
             events: {
                 onReady: () => {
-                    this.playerReady = true;
+                    this.setState({playerReady: true});
                 },
                 onStateChange: (event: any) => {
                     switch (event.data) {

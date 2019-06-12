@@ -25,7 +25,7 @@ export default class Page2 extends ComponentBase<any, YoutubeState> {
         return (
             <>
                 <Head>
-                    <title>BNR Page 2 - persistent component</title>
+                    <title>BNR Page 2 {this.state.youtubeId}- persistent component</title>
                 </Head>
                 <Header/>
                 <div className="body">
