@@ -9,50 +9,78 @@ declare var window: any;
  * This component injects the Youtube Iframe API script into the <head/>.
  * And also renders the Youtube embed HTML and handles the state changes (Play/Stop/Pause).
  */
-class YoutubeEmbed extends PureComponent<any, any> {
-    state: any = {
-        youtubeId: this.props.youtubeId
-    };
+class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
     private player: any;
+    private playerReady: boolean = false;
+    private iframeApiReady: boolean = false;
 
     componentDidMount() {
-        /**
-         * Inject the Youtube iframe API script into the head.
-         */
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const head = document.querySelector('head');
-        if (head) {
-            head.appendChild(tag);
-        }
-
-        window.onYouTubeIframeAPIReady = () => {
-            this.player = new YT.Player('player', {
-                events: {
-                    onReady: () => console.log,
-                    onStateChange: this.onPlayerStateChange
-                }
-            });
-        };
+        // Initialize Youtube player.
+        this.initPlayer();
     }
 
     componentDidUpdate(prevProps: any) {
-        if (this.props.youtubeId !== prevProps.youtubeId && this.player) {
-            this.player.cueVideoById({videoId: this.props.youtubeId});
+        // When no Youtube player exist we try to initialize it first.
+        if (!this.player) {
+            this.initPlayer();
+        }
+        // When the Youtube player is ready and youtubeId has changed.
+        if (this.props.youtubeId !== prevProps.youtubeId && this.playerReady) {
+            // If youtubeId is not empty we cue the new video. Otherwise we stop the player.
+            if (this.props.youtubeId) {
+                this.player.cueVideoById({videoId: this.props.youtubeId});
+            } else {
+                this.player.stopVideo();
+            }
         }
     }
 
-    onPlayerStateChange = (event: any) => {
-        switch (event.data) {
-            case YT.PlayerState.PLAYING:
-                YoutubeStore.setIsPlaying();
-                break;
-            case YT.PlayerState.PAUSED:
-            case YT.PlayerState.ENDED:
-                YoutubeStore.setIsPaused();
-                break;
-            default:
+    /**
+     * Initialize the Youtube player if conditions are met.
+     * - onYouTubeIframeAPIReady must be true
+     */
+    initPlayer = () => {
+        if (this.iframeApiReady) {
+            this.loadPlayer();
+        } else {
+            window.onYouTubeIframeAPIReady = () => {
+                this.iframeApiReady = true;
+                this.loadPlayer();
+            };
         }
+    }
+
+    /**
+     * Render the Youtube player if conditions are met.
+     * - youtubeId must not be empty
+     */
+    loadPlayer = () => {
+        if (!this.props.youtubeId) { return; }
+        console.log('loadPlayer', this.props.youtubeId);
+        this.player = new YT.Player('player', {
+            videoId: this.props.youtubeId,
+            width: 640,
+            height: 390,
+            events: {
+                onReady: () => {
+                    this.playerReady = true;
+                },
+                onStateChange: (event: any) => {
+                    switch (event.data) {
+                        case YT.PlayerState.PLAYING:
+                            console.log('playing');
+                            YoutubeStore.setIsPlaying();
+                            break;
+                        case YT.PlayerState.PAUSED:
+                        case YT.PlayerState.ENDED:
+                            console.log('paused/ended');
+                            YoutubeStore.setIsPaused();
+                            break;
+                        default:
+                    }
+                }
+            }
+        });
     }
 
     render() {
@@ -75,7 +103,7 @@ class YoutubeEmbed extends PureComponent<any, any> {
                     }
                 `}</style>
                 <div className="iframe-container">
-                    <iframe id="player" width="640" height="390" src={`https://www.youtube.com/embed/${this.state.youtubeId}?enablejsapi=1`} frameBorder="0"/>
+                    <div id="player"/>
                 </div>
             </>
         );
@@ -87,9 +115,6 @@ class YoutubeEmbed extends PureComponent<any, any> {
  * @param props
  */
 function AmpYoutubeEmbed(props: {youtubeId: string}) {
-    if (!props.youtubeId) {
-        return null;
-    }
     return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId}/>);
 }
 

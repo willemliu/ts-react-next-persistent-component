@@ -15,7 +15,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
     }
 
     componentDidMount() {
-        if (!this.props.playing) {
+        if (!YoutubeStore.getIsPlaying()) {
             this.changeYoutubeId();
         }
     }
