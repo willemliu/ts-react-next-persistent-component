@@ -21,6 +21,10 @@ app.prepare()
   });
 
   server.use('/static', express.static('static'));
+  
+  server.get('/:section/:id(\\d+)/:title?', (req, res) => {
+    return app.render(req, res, '/article', { articleId: req.params.id })
+  });
 
   server.get('*', (req, res) => {
     return handle(req, res);

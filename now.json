@@ -11,6 +11,12 @@
             "cache-control": "public, max-age=43200, immutable",
             "Service-Worker-Allowed": "/"
         }
+    }, {
+        "src": "/(.+)/(?<articleId>[\\d]+)",
+        "dest": "/article?articleId=$articleId"
+    }, {
+        "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+        "dest": "/article?articleId=$articleId"
     }],
     "regions": ["bru"]
 }

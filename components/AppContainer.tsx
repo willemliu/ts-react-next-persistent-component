@@ -37,8 +37,8 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
                     }
                 `}</style>
 
-                <Component playing={this.state.isPlaying}/>
-                <YoutubeEmbed youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
+                <Component {...pageProps}/>
+                <YoutubeEmbed {...pageProps} youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
             </>
         );
     }

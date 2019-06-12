@@ -87,6 +87,9 @@ class YoutubeEmbed extends PureComponent<any, any> {
  * @param props
  */
 function AmpYoutubeEmbed(props: {youtubeId: string}) {
+    if (!props.youtubeId) {
+        return null;
+    }
     return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId}/>);
 }
 
