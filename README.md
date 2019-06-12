@@ -13,3 +13,6 @@ Add `?amp=1` to the end of the url to visit the AMP-ed page.
 Azure: https://persistent-component.azurewebsites.net/
 
 Zeit Now: https://ts-react-next-persistent-component.willemliu.now.sh/
+
+## Staging
+Zeit Now: https://ts-react-next-persistent-component-git-develop.willemliu.now.sh
