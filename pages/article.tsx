@@ -17,10 +17,10 @@ function Article(props: any) {
     );
 }
 
-Article.getInitialProps = async ({ req, query }: any) => {
+Article.getInitialProps = async ({ query }: any) => {
     return {
         articleId: query.articleId
-    }
+    };
 };
 
 export default Article;

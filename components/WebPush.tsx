@@ -12,7 +12,7 @@ export default function handleWebPush() {
             body: 'Test push message'
         });
 
-        notification.onclick = function () {
+        notification.onclick = () => {
             console.debug('Go to', window.location.href);
             notification.close();
         };

@@ -16,14 +16,14 @@ app.prepare()
   server.use(compression());
 
   server.get('/service-worker.js', (req, res) => {
-    const filePath = join(__dirname, '.next/static/service-worker.js')
+    const filePath = join(__dirname, '.next/static/service-worker.js');
     app.serveStatic(req, res, filePath);
   });
 
   server.use('/static', express.static('static'));
-  
+
   server.get('/:section/:id(\\d+)/:title?', (req, res) => {
-    return app.render(req, res, '/article', { articleId: req.params.id })
+    return app.render(req, res, '/article', { articleId: req.params.id });
   });
 
   server.get('*', (req, res) => {

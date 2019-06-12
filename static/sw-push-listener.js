@@ -1,6 +1,6 @@
 console.log('sw-push-listener');
 
-self.addEventListener('push', function (event) {
+self.addEventListener('push', (event) => {
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         return;
     }

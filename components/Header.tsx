@@ -6,7 +6,7 @@ import handleWebPush from "./WebPush";
 /**
  * Header component contains description about this App and the navigation links.
  */
-function Header(props: any) {
+function Header() {
 
     return (
         <>
@@ -23,7 +23,7 @@ function Header(props: any) {
                         <a href="/?amp=1"><button>Home</button></a>
                         <a href="/page1?amp=1"><button>Page 1</button></a>
                         <a href="/page2?amp=1"><button>Page 2</button></a>
-                    </> : 
+                    </> :
                     <>
                         <Link prefetch href="/">
                             <button>Home</button>
