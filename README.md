@@ -17,4 +17,4 @@ Zeit Now: https://ts-react-next-persistent-component.willemliu.now.sh/
 ## Staging
 Zeit Now: https://ts-react-next-persistent-component-git-develop.willemliu.now.sh
 
-Custom domain: https://persistent-component.moviesom.com/
+Custom domain: https://persistent-component.willim.nl/
