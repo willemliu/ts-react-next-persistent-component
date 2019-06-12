@@ -13,6 +13,7 @@ function AppHead(props: any) {
             <link rel="manifest" href="/static/manifest.json" />
             <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
             {useAmp() ? <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"/> : null}
+            {useAmp() ? null : <script src="https://www.youtube.com/iframe_api"/>}
         </Head>
     );
 }

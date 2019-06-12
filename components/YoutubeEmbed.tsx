@@ -9,57 +9,40 @@ declare var window: any;
  * This component injects the Youtube Iframe API script into the <head/>.
  * And also renders the Youtube embed HTML and handles the state changes (Play/Stop/Pause).
  */
-class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
+class YoutubeEmbed extends PureComponent<{youtubeId: string, player: any}, any> {
     private player: any;
 
     componentDidMount() {
-        /**
-         * Inject the Youtube iframe API script into the head.
-         */
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const head = document.querySelector('head');
-        if (head) {
-            head.appendChild(tag);
-        }
-
         window.onYouTubeIframeAPIReady = () => {
+            console.log('componentDidMount.onYouTubeIframeAPIReady');
             this.player = new YT.Player('player', {
+                videoId: this.props.youtubeId,
+                width: 640,
+                height: 390,
                 events: {
                     onReady: () => console.log,
-                    onStateChange: this.onPlayerStateChange
+                    onStateChange: (event: any) => {
+                        switch (event.data) {
+                            case YT.PlayerState.PLAYING:
+                                console.log('playing');
+                                YoutubeStore.setIsPlaying();
+                                break;
+                            case YT.PlayerState.PAUSED:
+                            case YT.PlayerState.ENDED:
+                                console.log('paused/ended');
+                                YoutubeStore.setIsPaused();
+                                break;
+                            default:
+                        }
+                    }
                 }
             });
         };
     }
 
     componentDidUpdate(prevProps: any) {
-        if (!window.onYouTubeIframeAPIReady) {
-            window.onYouTubeIframeAPIReady = () => {
-                this.player = new YT.Player('player', {
-                    events: {
-                        onReady: () => console.log,
-                        onStateChange: this.onPlayerStateChange
-                    }
-                });
-            };
-        }
-
         if (this.props.youtubeId !== prevProps.youtubeId && this.player) {
             this.player.cueVideoById({videoId: this.props.youtubeId});
-        }
-    }
-
-    onPlayerStateChange = (event: any) => {
-        switch (event.data) {
-            case YT.PlayerState.PLAYING:
-                YoutubeStore.setIsPlaying();
-                break;
-            case YT.PlayerState.PAUSED:
-            case YT.PlayerState.ENDED:
-                YoutubeStore.setIsPaused();
-                break;
-            default:
         }
     }
 
@@ -83,7 +66,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
                     }
                 `}</style>
                 <div className="iframe-container">
-                    <iframe id="player" width="640" height="390" src={`https://www.youtube.com/embed/${this.props.youtubeId}?enablejsapi=1`} frameBorder="0"/>
+                    <div id="player"/>
                 </div>
             </>
         );
@@ -94,11 +77,11 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
  * Returns either the AMP or regular component depending on the request.
  * @param props
  */
-function AmpYoutubeEmbed(props: {youtubeId: string}) {
+function AmpYoutubeEmbed(props: {youtubeId: string, player: any}) {
     if (!props.youtubeId) {
         return null;
     }
-    return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId}/>);
+    return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId} player={props.player}/>);
 }
 
 export default withAmp(AmpYoutubeEmbed as any, { hybrid: true }) as any;
