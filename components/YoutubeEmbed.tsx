@@ -34,6 +34,17 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
     }
 
     componentDidUpdate(prevProps: any) {
+        if (!window.onYouTubeIframeAPIReady) {
+            window.onYouTubeIframeAPIReady = () => {
+                this.player = new YT.Player('player', {
+                    events: {
+                        onReady: () => console.log,
+                        onStateChange: this.onPlayerStateChange
+                    }
+                });
+            };
+        }
+
         if (this.props.youtubeId !== prevProps.youtubeId && this.player) {
             this.player.cueVideoById({videoId: this.props.youtubeId});
         }
