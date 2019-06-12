@@ -9,7 +9,7 @@ declare var window: any;
  * This component injects the Youtube Iframe API script into the <head/>.
  * And also renders the Youtube embed HTML and handles the state changes (Play/Stop/Pause).
  */
-export default class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
+class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
     private player: any;
 
     componentDidMount() {
@@ -83,11 +83,11 @@ export default class YoutubeEmbed extends PureComponent<{youtubeId: string}, any
  * Returns either the AMP or regular component depending on the request.
  * @param props
  */
-// function AmpYoutubeEmbed(props: {youtubeId: string}) {
-//     if (!props.youtubeId) {
-//         return <YoutubeEmbed youtubeId={props.youtubeId}/>;
-//     }
-//     return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId}/>);
-// }
+function AmpYoutubeEmbed(props: {youtubeId: string}) {
+    if (!props.youtubeId) {
+        return null;
+    }
+    return (useAmp() ? <amp-youtube data-videoid={props.youtubeId} layout="responsive" width="480" height="270"/> : <YoutubeEmbed youtubeId={props.youtubeId}/>);
+}
 
-// export default withAmp(AmpYoutubeEmbed as any, { hybrid: true }) as any;
+export default withAmp(AmpYoutubeEmbed as any, { hybrid: true }) as any;
