@@ -10,7 +10,7 @@ function Article(props: any) {
             </Head>
             <Header/>
             <div className="body">
-                <h1>Article page develop</h1>
+                <h1>Article page</h1>
                 <p>ID: {props.articleId}</p>
             </div>
         </>
