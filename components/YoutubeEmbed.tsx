@@ -59,6 +59,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
             height: 390,
             events: {
                 onReady: () => {
+                    this.setState({playerRead: true});
                     console.log('player ready');
                 },
                 onStateChange: (event: any) => {
