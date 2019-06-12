@@ -12,8 +12,8 @@ self.addEventListener('push', function (event) {
 
     if (event.data) {
         console.log(event.data);
-        const message = event.data.json();
-        event.waitUntil(sendNotification(message));
+        const message = event.data.text();
+        event.waitUntil(sendNotification({title: message, options: {icon: '/static/192x192.png', body: message}}));
     }
 });
 

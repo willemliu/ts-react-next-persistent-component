@@ -1,6 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import { withAmp, useAmp } from "next/amp";
+import handleMessage from "./WebPush";
 
 /**
  * Header component contains description about this App and the navigation links.
@@ -14,6 +15,7 @@ function Header(props: any) {
             <p>If the video is not started or is paused again you can navigate to another page then the video url is updated with the one corresponding to that page.</p>
             <p>The player state is being maintained using <a rel="noopener" href="https://github.com/Microsoft/ReSub" target="_blank">ReSub</a>.</p>
             <p>⚡AMP-ed version can be viewed by adding <i>?amp=1</i> to the end of the URL.</p>
+            <p><button onClick={handleMessage}>Web push</button></p>
 
             <div className="button-container">
                 {useAmp() ?
