@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "alias": "persistent-component.willim.nl",
     "builds": [
         { "src": "package.json", "use": "@now/next" }
     ],
