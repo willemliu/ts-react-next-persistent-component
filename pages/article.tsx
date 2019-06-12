@@ -11,8 +11,7 @@ function Article(props: any) {
 
 Article.getInitialProps = async ({ req, query }: any) => {
     return {
-        articleId: query.articleId,
-        youtubeId: ''
+        articleId: query.articleId
     }
 };
 

@@ -13,6 +13,8 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
         const {Component, pageProps} = this.props;
         return (
             <>
+                <Component {...pageProps}/>
+                <YoutubeEmbed youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
                 <style jsx global>{`
                     html, body {
                         display: flex;
@@ -36,9 +38,6 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
                         padding: 1rem 0;
                     }
                 `}</style>
-
-                <Component {...pageProps}/>
-                <YoutubeEmbed {...pageProps} youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
             </>
         );
     }
