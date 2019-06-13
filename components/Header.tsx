@@ -7,7 +7,7 @@ import handleWebPush from "./WebPush";
  * Header component contains description about this App and the navigation links.
  */
 function Header() {
-
+    
     return (
         <>
             <p>This is an example project showcasing the use of <a rel="noopener" href="https://nextjs.org/" target="_blank">Next.JS</a> to create a persistant player which survives navigation.</p>

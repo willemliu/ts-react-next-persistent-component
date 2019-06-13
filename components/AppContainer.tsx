@@ -2,19 +2,29 @@ import React from "react";
 import YoutubeEmbed from "./YoutubeEmbed";
 import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
+import { setClient } from "../utils/app";
 
 declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
     state: any = {};
-    private isServer = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
+    private isBrowser = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
+
+    constructor(props: any) {
+        super(props);
+        if (this.isBrowser) {
+            if (window.location.search.indexOf('isPwa=true') > -1) {
+                setClient('PWA');
+            }
+        }
+    }
 
     render() {
         const {Component, pageProps} = this.props;
         return (
             <>
                 <Component {...pageProps}/>
-                <YoutubeEmbed youtubeId={this.isServer ? this.state.youtubeId : pageProps.youtubeId}/>
+                <YoutubeEmbed youtubeId={this.isBrowser ? this.state.youtubeId : pageProps.youtubeId}/>
                 <style jsx global>{`
                     html, body {
                         display: flex;
@@ -43,7 +53,7 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
     }
 
     protected _buildState(props: any, initialBuild: boolean): YoutubeState {
-        this.isServer = initialBuild ? this.state.useState : true;
+        this.isBrowser = initialBuild ? this.state.useState : true;
         return {
             initialYoutubeId: '',
             youtubeId: YoutubeStore.getYoutubeId(),

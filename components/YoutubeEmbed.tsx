@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import YoutubeStore from "../stores/YoutubeStore";
 import { withAmp, useAmp } from "next/amp";
+import { Log } from "../utils/log";
+import { getClient } from "../utils/app";
 
 declare var YT: any;
 declare var window: any;
@@ -20,6 +22,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
         const firstScriptTag: any = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         window.onYouTubeIframeAPIReady = () => {
+            Log.info({client: getClient(), youTubeIframeAPIReady: true});
             this.loadPlayer();
         };
     }
@@ -57,6 +60,7 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
      */
     loadPlayer = () => {
         if (!this.props.youtubeId) { return; }
+        Log.info({client: getClient(), message: 'Load player', videoId: this.props.youtubeId});
         const player = new YT.Player('player', {
             videoId: this.props.youtubeId,
             width: 640,
@@ -64,17 +68,17 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
             events: {
                 onReady: () => {
                     this.setState({playerRead: true});
-                    console.log('player ready');
+                    Log.info({client: getClient(), youTubePlayerReady: true});
                 },
                 onStateChange: (event: any) => {
                     switch (event.data) {
                         case YT.PlayerState.PLAYING:
-                            console.log('playing');
+                            Log.info({client: getClient(), youTubePlayerState: 'PLAYING'});
                             YoutubeStore.setIsPlaying();
                             break;
                         case YT.PlayerState.PAUSED:
                         case YT.PlayerState.ENDED:
-                            console.log('paused/ended');
+                            Log.info({client: getClient(), youTubePlayerState: 'PAUSED/ENDED'});
                             YoutubeStore.setIsPaused();
                             break;
                         default:

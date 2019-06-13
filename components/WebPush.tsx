@@ -1,3 +1,6 @@
+import { Log } from "../utils/log";
+import { getClient } from "../utils/app";
+
 export default function handleWebPush() {
     if (!Notification) {
         alert('Desktop notifications not available in your browser. Try Chromium.');
@@ -13,7 +16,7 @@ export default function handleWebPush() {
         });
 
         notification.onclick = () => {
-            console.debug('Go to', window.location.href);
+            Log.info({client: getClient(), message: `Go to ${window.location.href}`});
             notification.close();
         };
     }

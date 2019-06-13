@@ -1,4 +1,4 @@
-console.log('sw-push-listener');
+workbox.setConfig({ debug: false });
 
 self.addEventListener('push', (event) => {
     if (!(self.Notification && self.Notification.permission === 'granted')) {

@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Header from "../components/Header";
 import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
+import { Log } from "../utils/log";
+import { getClient } from "../utils/app";
 
 /**
  * Home page.
@@ -21,6 +23,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
     }
 
     changeYoutubeId = () => {
+        Log.info({client: getClient(), newYoutubeId: this.state.initialYoutubeId, oldYoutubeId: this.state.youtubeId});
         YoutubeStore.setYoutubeId(this.state.initialYoutubeId);
     }
 

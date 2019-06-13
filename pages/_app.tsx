@@ -5,7 +5,6 @@ import AppContainer from "../components/AppContainer";
 export default class PersistentApp extends App {
     static async getInitialProps({ Component, ctx }: any) {
         let pageProps: any = {};
-
         if (Component.getInitialProps) {
           pageProps = await Component.getInitialProps(ctx);
         }
