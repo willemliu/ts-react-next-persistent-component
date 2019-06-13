@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Teaser from '@fdmg/fd-teaser';
 import SquareTeaser from '@fdmg/fd-square-teaser';
 import OpeningTeaser from '@fdmg/fd-opening-teaser';
 import styled, { createGlobalStyle } from "styled-components";
+import Router from 'next/router';
+import Link from "next/link";
+import { Log } from "../utils/log";
+import { getClient } from "../utils/app";
 
 export default function Section() {
+    useEffect(() => {
+        [].slice.call(document.querySelectorAll('[href]')).forEach((link: HTMLAnchorElement) => {
+            link.addEventListener('click', (e: any) => {
+                e.preventDefault();
+                if (e.currentTarget) {
+                    const href = e.currentTarget.getAttribute('href') || '/';
+                    Log.info({client: getClient(), href});
+                    /**
+                     * Make sure we're navigating to a relative URL.
+                     */
+                    if (href.match(new RegExp(/^\/\w+/g))) {
+                        Router.push('/article?articleId=123', href);
+                    } else {
+                        Router.push(href);
+                    }
+                }
+            });
+        });
+    });
+
     return (
         <StyledSection>
             <GlobalStyle/>
@@ -81,32 +105,37 @@ export default function Section() {
                 />
             </main>
             <aside>
-            <SquareTeaser
-                id="1292665"
-                baseUrl="https://fd.nl"
-                url="/futures/1292665/een-muur-bouwen-is-makkelijker-dan-robots-stukslaan"
-                image={{
-                    src: 'https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663',
-                    alt: 'Amsterdam doet ertoe'
-                }}
-                sourceSets={[{
-                    media: "(max-width: 640px)",
-                    srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663`
-                }, {
-                    media: "(max-width: 860px)",
-                    srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=115&h=115&rect=.20625%2C.0%2C.66625%2C.9999999999999999`
-                }, {
-                    media: "(min-width: 861px)",
-                    srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=300&h=169&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663`
-                }]}
-                figCaption="Francis Fukuyama: 'Een muur bouwen is makkelijker dan robots stukslaan'"
-                subject="Samenleving"
-                readableAge="6 uur"
-                date="17 Nov 1981"
-                title="Francis Fukuyama: 'Een muur bouwen is makkelijker dan robots stukslaan'"
-                description="Identiteitspolitiek leidt zowel op links als op rechts tot uitwassen zoals de muur van Trump, zegt Francis Fukuyama. We kunnen ons beter druk maken over andere kwesties, zoals robotisering."
-            />
-            </aside>
+                <SquareTeaser
+                    id="1292665"
+                    baseUrl="https://fd.nl"
+                    url="/futures/1292665/een-muur-bouwen-is-makkelijker-dan-robots-stukslaan"
+                    image={{
+                        src: 'https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663',
+                        alt: 'Amsterdam doet ertoe'
+                    }}
+                    sourceSets={[{
+                        media: "(max-width: 640px)",
+                        srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663`
+                    }, {
+                        media: "(max-width: 860px)",
+                        srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=115&h=115&rect=.20625%2C.0%2C.66625%2C.9999999999999999`
+                    }, {
+                        media: "(min-width: 861px)",
+                        srcSet: `https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=300&h=169&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663`
+                    }]}
+                    figCaption="Francis Fukuyama: 'Een muur bouwen is makkelijker dan robots stukslaan'"
+                    subject="Samenleving"
+                    readableAge="6 uur"
+                    date="17 Nov 1981"
+                    title="Francis Fukuyama: 'Een muur bouwen is makkelijker dan robots stukslaan'"
+                    description="Identiteitspolitiek leidt zowel op links als op rechts tot uitwassen zoals de muur van Trump, zegt Francis Fukuyama. We kunnen ons beter druk maken over andere kwesties, zoals robotisering."
+                />
+
+                <Link prefetch as="/beurs/1286450/analisten-twijfelen-aan-renteverhoging-ecb" href="/article?articleId=1286450">
+                    <button>Article 1286450</button>
+                </Link>
+
+                </aside>
         </StyledSection>
     );
 }

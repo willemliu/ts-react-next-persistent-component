@@ -24,6 +24,7 @@ function Header() {
                         <a href="/?amp=1"><button>Home</button></a>
                         <a href="/page1?amp=1"><button>Page 1</button></a>
                         <a href="/page2?amp=1"><button>Page 2</button></a>
+                        <a href="/section?amp=1"><button>Section</button></a>
                     </> :
                     <>
                         <Link prefetch href="/">
@@ -34,6 +35,9 @@ function Header() {
                         </Link>
                         <Link prefetch href="/page2">
                             <button>Page 2</button>
+                        </Link>
+                        <Link prefetch href="/section">
+                            <button>Section</button>
                         </Link>
                     </>
                 }

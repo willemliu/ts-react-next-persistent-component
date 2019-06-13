@@ -23,7 +23,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
     }
 
     changeYoutubeId = () => {
-        Log.info({client: getClient(), newYoutubeId: this.state.initialYoutubeId, oldYoutubeId: this.state.youtubeId});
+        Log.info({client: getClient(), newYoutubeId: this.state.initialYoutubeId, oldYoutubeId: this.props.youtubeId});
         YoutubeStore.setYoutubeId(this.state.initialYoutubeId);
     }
 
@@ -31,7 +31,7 @@ export default class Index extends ComponentBase<any, YoutubeState> {
         return (
             <>
                 <Head>
-                    <title>BNR {this.state.youtubeId}- persistent component</title>
+                    <title>BNR {this.props.youtubeId}- persistent component</title>
                 </Head>
                 <Header/>
                 <div className="body">
