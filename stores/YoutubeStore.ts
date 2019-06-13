@@ -2,7 +2,7 @@ import { StoreBase, AutoSubscribeStore, autoSubscribe } from 'resub';
 
 export interface YoutubeState {
     isPlaying?: boolean;
-    initialYoutubeId: string;
+    initialYoutubeId?: string;
     youtubeId: string;
 }
 

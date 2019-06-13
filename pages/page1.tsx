@@ -1,27 +1,23 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
-import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
-import { ComponentBase } from "resub";
-import { Log } from "../utils/log";
-import { getClient } from "../utils/app";
 
-export default class Page1 extends ComponentBase<any, YoutubeState> {
+export default class Page1 extends PureComponent<any, any> {
     static async getInitialProps() {
         return {
+            initialYoutubeId: 'MfD67KCFxqI',
             youtubeId: 'MfD67KCFxqI'
         };
     }
 
     componentDidMount() {
-        if (!YoutubeStore.getIsPlaying()) {
+        if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }
     }
 
     changeYoutubeId = () => {
-        Log.info({client: getClient(), newYoutubeId: this.state.initialYoutubeId, oldYoutubeId: this.props.youtubeId});
-        YoutubeStore.setYoutubeId(this.state.initialYoutubeId);
+        this.props.onYoutubeIdChange(this.props.initialYoutubeId);
     }
 
     render() {
@@ -33,18 +29,11 @@ export default class Page1 extends ComponentBase<any, YoutubeState> {
                 <Header/>
                 <div className="body">
                     <h1>Page 1</h1>
-                    {this.state.initialYoutubeId !== this.state.youtubeId ? (
-                        <a onClick={this.changeYoutubeId}>Change video to: {this.state.initialYoutubeId}</a>
+                    {this.props.initialYoutubeId !== this.props.activeYoutubeId ? (
+                        <a onClick={this.changeYoutubeId}>Change video to: {this.props.initialYoutubeId}</a>
                     ) : null}
                 </div>
             </>
         );
-    }
-
-    protected _buildState(props: any, initialBuild: boolean): YoutubeState {
-        return {
-            initialYoutubeId: 'MfD67KCFxqI',
-            youtubeId: YoutubeStore.getYoutubeId()
-        };
     }
 }

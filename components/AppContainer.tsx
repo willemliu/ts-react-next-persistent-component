@@ -2,8 +2,9 @@ import React from "react";
 import YoutubeEmbed from "./YoutubeEmbed";
 import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
 import { ComponentBase } from "resub";
-import { setClient } from "../utils/app";
+import { setClient, getClient } from "../utils/app";
 import { createGlobalStyle } from "styled-components";
+import { Log } from "../utils/log";
 
 declare var process: any;
 
@@ -20,12 +21,22 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
         }
     }
 
+    changeYoutubeId = (youtubeId: string) => {
+        Log.info({client: getClient(), newYoutubeId: youtubeId, oldYoutubeId: this.state.youtubeId});
+        YoutubeStore.setYoutubeId(youtubeId);
+    }
+
     render() {
         const {Component, pageProps} = this.props;
         return (
             <>
                 <GlobalStyle/>
-                <Component {...pageProps}/>
+                <Component
+                    {...pageProps}
+                    isPlaying={this.state.isPlaying ? true : false}
+                    activeYoutubeId={this.state.youtubeId ? this.state.youtubeId : null}
+                    onYoutubeIdChange={this.changeYoutubeId}
+                />
                 <YoutubeEmbed youtubeId={this.isBrowser ? this.state.youtubeId : pageProps.youtubeId}/>
             </>
         );
