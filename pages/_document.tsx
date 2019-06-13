@@ -5,7 +5,7 @@ import { setClient } from '../utils/app';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
-    if (ctx.req.query.isPwa === 'true') {
+    if (ctx.req.query && ctx.req.query.isPwa === 'true') {
       setClient('PWA');
     }
     const initialProps = await Document.getInitialProps(ctx);

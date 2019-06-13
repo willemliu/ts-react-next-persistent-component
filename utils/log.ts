@@ -20,7 +20,7 @@ class LogglyTransport extends Transport {
       });
   
       // Perform the writing to the remote service
-      if  (_LTracker) {
+      if  (typeof(_LTracker) !== 'undefined') {
         _LTracker.push(info);
       }
 
