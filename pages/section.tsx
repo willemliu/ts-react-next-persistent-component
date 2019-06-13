@@ -12,7 +12,7 @@ export default function Section() {
                 <OpeningTeaser
                     id="1286450"
                     baseUrl="https://fd.nl"
-                    url="https://fd.nl/beurs/1286450/analisten-twijfelen-aan-renteverhoging-ecb"
+                    url="/beurs/1286450/analisten-twijfelen-aan-renteverhoging-ecb"
                     image={{
                         src: 'https://images.fd.nl/-4mOGVA1ry0LHTzjvcxdyT-FH-E.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663',
                         alt: "Mario Draghi, president of the European Central Bank (ECB), departs a rates decision news conference in Frankfurt, Germany, on Thursday, Dec. 13, 2018. Draghi said risks to the euro-area economy are worsening even as he called time on the European Central Banks' flagship deflation-fighting tool. Photographer: Alex Kraus/Bloomberg"
@@ -37,11 +37,11 @@ export default function Section() {
                     related={[{
                         longread: true,
                         title: '‘Als vrouw moet je altijd onafhankelijk zijn’',
-                        url: 'https://dev.fd.nl/profiel/1235280/als-vrouw-moet-je-onafhankelijk-zijn',
+                        url: '/profiel/1235280/als-vrouw-moet-je-onafhankelijk-zijn',
                         uuid: "1235280"
                     }, {
                         title: 'President van de Amerikaanse Fed hamert op onafhankelijkheid',
-                        url: 'https://dev.fd.nl/economie-politiek/1235274/president-van-de-amerikaanse-fed-hamert-op-onafhankelijkheid',
+                        url: '/economie-politiek/1235274/president-van-de-amerikaanse-fed-hamert-op-onafhankelijkheid',
                         uuid: "1235274"
                     }]}
                 />
@@ -71,11 +71,11 @@ export default function Section() {
                     related={[{
                         longread: true,
                         title: '‘Als vrouw moet je altijd onafhankelijk zijn’',
-                        url: 'https://dev.fd.nl/profiel/1235280/als-vrouw-moet-je-onafhankelijk-zijn',
+                        url: '/profiel/1235280/als-vrouw-moet-je-onafhankelijk-zijn',
                         uuid: "12345"
                     }, {
                         title: 'President van de Amerikaanse Fed hamert op onafhankelijkheid',
-                        url: 'https://dev.fd.nl/economie-politiek/1235274/president-van-de-amerikaanse-fed-hamert-op-onafhankelijkheid',
+                        url: '/economie-politiek/1235274/president-van-de-amerikaanse-fed-hamert-op-onafhankelijkheid',
                         uuid: "123456"
                     }]}    
                 />
@@ -84,7 +84,7 @@ export default function Section() {
             <SquareTeaser
                 id="1292665"
                 baseUrl="https://fd.nl"
-                url="https://fd.nl/futures/1292665/een-muur-bouwen-is-makkelijker-dan-robots-stukslaan"
+                url="/futures/1292665/een-muur-bouwen-is-makkelijker-dan-robots-stukslaan"
                 image={{
                     src: 'https://images.fd.nl/nheGAUNYeo_AjGfa7ob4cqxoreI.jpg?fit=crop&crop=faces&auto=format&fm=jpg&q=45&w=599&h=337&rect=.0%2C.1557223264540338%2C.9999999999999999%2C.8442776735459663',
                     alt: 'Amsterdam doet ertoe'
