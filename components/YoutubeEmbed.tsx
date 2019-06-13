@@ -91,27 +91,9 @@ class YoutubeEmbed extends PureComponent<{youtubeId: string}, any> {
 
     render() {
         return (
-            <>
-                <style jsx global>{`
-                    .iframe-container {
-                        overflow: hidden;
-                        padding-top: 56.25%;
-                        position: relative;
-                    }
-
-                    .iframe-container iframe {
-                        border: 0;
-                        height: 100%;
-                        left: 0;
-                        position: absolute;
-                        top: 0;
-                        width: 100%;
-                    }
-                `}</style>
-                <div className="iframe-container">
-                    <div id="player"/>
-                </div>
-            </>
+            <div className="iframe-container">
+                <div id="player"/>
+            </div>
         );
     }
 }

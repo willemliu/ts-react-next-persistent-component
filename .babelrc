@@ -2,7 +2,8 @@
   "plugins": [
     ["@babel/plugin-proposal-decorators", {
       "legacy": true
-    }]
+    }],
+    ["styled-components", { "ssr": true }]
   ],
   "presets": [
     "@zeit/next-typescript/babel",

@@ -1,6 +1,13 @@
 import React from "react";
 import App, { Container } from 'next/app';
 import AppContainer from "../components/AppContainer";
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+    colors: {
+        primary: '#191919'
+    }
+};
 
 export default class PersistentApp extends App {
     static async getInitialProps({ Component, ctx }: any) {
@@ -15,7 +22,9 @@ export default class PersistentApp extends App {
     render() {
         return (
             <Container>
-                <AppContainer {...this.props}/>
+                <ThemeProvider theme={theme}>
+                    <AppContainer {...this.props}/>
+                </ThemeProvider>
             </Container>
         );
     }
