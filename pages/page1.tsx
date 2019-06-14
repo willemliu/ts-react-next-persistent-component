@@ -13,7 +13,7 @@ export default class Page1 extends PureComponent<any, any> {
     }
 
     componentDidMount() {
-        Log.info({client: getClient(), view: '/'});
+        Log.info({client: getClient(), view: 'page1'});
         if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }
