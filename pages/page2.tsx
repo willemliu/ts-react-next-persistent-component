@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
+import { Log } from "../utils/log";
+import { getClient } from "../utils/app";
 
 export default class Page2 extends PureComponent<any, any> {
     static async getInitialProps() {
@@ -11,6 +13,7 @@ export default class Page2 extends PureComponent<any, any> {
     }
 
     componentDidMount() {
+        Log.info({client: getClient(), view: '/'});
         if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }

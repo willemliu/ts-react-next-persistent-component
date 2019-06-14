@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
+import { getClient } from "../utils/app";
+import { Log } from "../utils/log";
 
 /**
  * Home page.
@@ -14,6 +16,7 @@ export default class Index extends PureComponent<any, any> {
     }
 
     componentDidMount() {
+        Log.info({client: getClient(), view: '/'});
         if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }
