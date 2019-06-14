@@ -8,7 +8,7 @@ const loggly = `var _LTracker = _LTracker || [];
 _LTracker.push({
     'logglyKey': 'c44e0143-3257-4a8f-a4b3-a3df1aefd79f',
     'sendConsoleErrors' : true,
-    'tag' : 'persistent-component'
+    'tag' : 'loggly-jslogger'
 });`;
 
 function AppHead(props: any) {
