@@ -56,6 +56,7 @@ const GlobalStyle = createGlobalStyle`
     html, body {
         display: flex;
         justify-content: space-around;
+        overscroll-behavior: contain;
     }
     body {
         margin: 0;
