@@ -6,7 +6,6 @@ import { Log } from "../utils/log";
 
 export default class Page1 extends PureComponent<any, any> {
     static async getInitialProps() {
-        Log.info({client: getClient(), view: 'page1'});
         return {
             initialYoutubeId: 'MfD67KCFxqI',
             youtubeId: 'MfD67KCFxqI'
@@ -14,6 +13,7 @@ export default class Page1 extends PureComponent<any, any> {
     }
 
     componentDidMount() {
+        Log.info({client: getClient(), view: 'page1'});
         if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }

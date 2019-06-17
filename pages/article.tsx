@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import { Log } from "../utils/log";
 import { getClient } from "../utils/app";
 
 function Article(props: any) {
-    Log.info({client: getClient(), view: 'article', articleId: props.articleId});
+    useEffect(() => {
+        Log.info({client: getClient(), view: 'article', articleId: props.articleId});
+    });
 
     return (
         <>
