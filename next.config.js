@@ -10,7 +10,7 @@ module.exports = withTypescript(withOffline({
     workboxOpts: {
         swDest: 'static/service-worker.js',
         runtimeCaching: [{
-            urlPattern: /^https?.*/,
+            urlPattern: /^https?.*\.[a-zA-Z0-9]*$/,
             handler: 'NetworkFirst',
             options: {
                 cacheName: 'https-calls',
