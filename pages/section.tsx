@@ -6,11 +6,11 @@ import styled, { createGlobalStyle } from "styled-components";
 import Router from 'next/router';
 import Link from "next/link";
 import { Log } from "../utils/log";
-import { getClient } from "../utils/app";
+import { getClient, getIsServer } from "../utils/app";
 
 export default function Section() {    
     useEffect(() => {
-        Log.info({client: getClient(), view: 'section'});
+        // Log.info({client: getClient(), view: 'section'});
         [].slice.call(document.querySelectorAll('[href]')).forEach((link: HTMLAnchorElement) => {
             link.addEventListener('click', (e: any) => {
                 e.preventDefault();
@@ -140,6 +140,11 @@ export default function Section() {
         </StyledSection>
     );
 }
+
+Section.getInitialProps = async () => {
+    Log.info({client: getClient(), view: 'section', server: getIsServer()});
+    return {};
+};
 
 const GlobalStyle = createGlobalStyle`
 html {

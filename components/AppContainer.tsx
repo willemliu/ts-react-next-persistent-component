@@ -9,7 +9,7 @@ import { Log } from "../utils/log";
 declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
-    state: any = {};
+    state: any = {youtubeId: ''};
     private isBrowser = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
 
     constructor(props: any) {

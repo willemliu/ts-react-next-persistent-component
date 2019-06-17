@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import { Log } from "../utils/log";
-import { getClient } from "../utils/app";
+import { getClient, getIsServer } from "../utils/app";
 
 function Article(props: any) {
     useEffect(() => {
-        Log.info({client: getClient(), view: 'article', articleId: props.articleId});
+        // Log.info({client: getClient(), view: 'article', articleId: props.articleId});
     });
 
     return (
@@ -23,7 +23,9 @@ function Article(props: any) {
     );
 }
 
-Article.getInitialProps = async ({ query }: any) => {
+Article.getInitialProps = async ({query}: any) => {
+    Log.info({client: getClient(), view: 'article', server: getIsServer(), articleId: query.articleId});
+
     return {
         articleId: query.articleId
     };

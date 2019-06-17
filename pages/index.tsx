@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Head from 'next/head';
 import Header from "../components/Header";
-import { getClient } from "../utils/app";
+import { getClient, getIsServer } from "../utils/app";
 import { Log } from "../utils/log";
 
 /**
@@ -9,6 +9,7 @@ import { Log } from "../utils/log";
  */
 export default class Index extends PureComponent<any, any> {
     static async getInitialProps() {
+        Log.info({client: getClient(), view: '/', server: getIsServer()});
         return {
             initialYoutubeId: 'dxq-7RcC0Tc',
             youtubeId: 'dxq-7RcC0Tc'
@@ -16,7 +17,7 @@ export default class Index extends PureComponent<any, any> {
     }
 
     componentDidMount() {
-        Log.info({client: getClient(), view: '/'});
+        // Log.info({client: getClient(), view: '/'});
         if (!this.props.isPlaying) {
             this.changeYoutubeId();
         }
