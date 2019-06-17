@@ -9,8 +9,9 @@ import { Log } from "../utils/log";
 import { getClient } from "../utils/app";
 
 export default function Section() {
+    Log.info({client: getClient(), view: 'section'});
+    
     useEffect(() => {
-        Log.info({client: getClient(), view: 'section'});
         [].slice.call(document.querySelectorAll('[href]')).forEach((link: HTMLAnchorElement) => {
             link.addEventListener('click', (e: any) => {
                 e.preventDefault();
