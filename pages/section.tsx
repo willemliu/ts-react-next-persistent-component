@@ -47,16 +47,16 @@ export default function Section(props: any) {
                         readableAge={props.teasers[0].show.runtime}
                         subject={props.teasers[0].show.type}
                         cardStyle={"default"}
-                        image={{src: props.teasers[0].show.image.medium, alt: props.teasers[0].show.name}}
+                        image={{src: props.teasers[0].show.image.medium.replace('http:', 'https:'), alt: props.teasers[0].show.name}}
                         sourceSets={[{
                             media: "(max-width: 640px)",
-                            srcSet: props.teasers[0].show.image.medium
+                            srcSet: props.teasers[0].show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(max-width: 860px)",
-                            srcSet: props.teasers[0].show.image.medium
+                            srcSet: props.teasers[0].show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(min-width: 861px)",
-                            srcSet: props.teasers[0].show.image.original
+                            srcSet: props.teasers[0].show.image.original.replace('http:', 'https:')
                         }]}
                         url={props.teasers[0].show.url.replace('http://www.tvmaze.com', '')}
                     />) : null
@@ -74,16 +74,16 @@ export default function Section(props: any) {
                         readableAge={teaser.show.runtime}
                         subject={teaser.show.type}
                         cardStyle={"default"}
-                        image={{src: teaser.show.image.medium, alt: teaser.show.name}}
+                        image={{src: teaser.show.image.medium.replace('http:', 'https:'), alt: teaser.show.name}}
                         sourceSets={[{
                             media: "(max-width: 640px)",
-                            srcSet: teaser.show.image.medium
+                            srcSet: teaser.show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(max-width: 860px)",
-                            srcSet: teaser.show.image.medium
+                            srcSet: teaser.show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(min-width: 861px)",
-                            srcSet: teaser.show.image.original
+                            srcSet: teaser.show.image.original.replace('http:', 'https:')
                         }]}
                         url={teaser.show.url.replace('http://www.tvmaze.com', '')}
                     />
@@ -102,16 +102,16 @@ export default function Section(props: any) {
                         readableAge={teaser.show.runtime}
                         subject={teaser.show.type}
                         cardStyle={"default"}
-                        image={{src: teaser.show.image.medium, alt: teaser.show.name}}
+                        image={{src: teaser.show.image.medium.replace('http:', 'https:'), alt: teaser.show.name}}
                         sourceSets={[{
                             media: "(max-width: 640px)",
-                            srcSet: teaser.show.image.medium
+                            srcSet: teaser.show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(max-width: 860px)",
-                            srcSet: teaser.show.image.medium
+                            srcSet: teaser.show.image.medium.replace('http:', 'https:')
                         }, {
                             media: "(min-width: 861px)",
-                            srcSet: teaser.show.image.original
+                            srcSet: teaser.show.image.original.replace('http:', 'https:')
                         }]}
                         url={teaser.show.url.replace('http://www.tvmaze.com', '')}
                     />
