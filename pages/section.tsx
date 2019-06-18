@@ -7,6 +7,7 @@ import Router from 'next/router';
 import Link from "next/link";
 import { Log } from "../utils/log";
 import { getClient, getIsServer } from "../utils/app";
+import fetch from 'isomorphic-unfetch';
 
 export default function Section(props: any) {
     useEffect(() => {
