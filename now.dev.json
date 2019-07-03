@@ -1,9 +1,5 @@
 {
     "version": 2,
-    "alias": [
-        "persistent-component.moviesom.com",
-        "persistent-component.willim.nl"
-    ],
     "env": {
         "ENVIRONMENT": "@dev-environment"
     },
