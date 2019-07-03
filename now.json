@@ -4,6 +4,9 @@
         "persistent-component.moviesom.com",
         "persistent-component.willim.nl"
     ],
+    "env": {
+        "ENVIRONMENT": "@environment"
+    },
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "routes": [
         {

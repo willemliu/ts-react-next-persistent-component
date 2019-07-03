@@ -1,8 +1,8 @@
-import Document, { Html, Main, NextScript } from 'next/document';
-import React from 'react';
-import AppHead from '../components/AppHead';
-import { setClient, setIsServer } from '../utils/app';
-import { ServerStyleSheet } from 'styled-components';
+import Document, { Html, Main, NextScript } from "next/document";
+import React from "react";
+import AppHead from "../components/AppHead";
+import { setClient, setIsServer } from "../utils/app";
+import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: any) {
@@ -14,16 +14,20 @@ export default class MyDocument extends Document {
         try {
             ctx.renderPage = () =>
                 originalRenderPage({
-                enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />)
-            });
+                    enhanceApp: (App: any) => (props: any) =>
+                        sheet.collectStyles(<App {...props} />)
+                });
 
-            if (ctx.req.query && ctx.req.query.isPwa === 'true') {
-                setClient('PWA');
+            if (ctx.req.query && ctx.req.query.isPwa === "true") {
+                setClient("PWA");
             }
             const initialProps = await Document.getInitialProps(ctx);
             return {
                 ...initialProps,
-                styles: [...initialProps.styles as any, ...sheet.getStyleElement()]
+                styles: [
+                    ...(initialProps.styles as any),
+                    ...sheet.getStyleElement()
+                ]
             };
         } finally {
             sheet.seal();
@@ -32,13 +36,13 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-        <Html lang="en">
-            <AppHead/>
-            <body>
-                <Main />
-                <NextScript />
-            </body>
-        </Html>
+            <Html lang="en">
+                <AppHead />
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
         );
     }
 }
