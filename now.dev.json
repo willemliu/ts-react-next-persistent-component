@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "alias": [
+        "persistent-component.moviesom.com",
+        "persistent-component.willim.nl"
+    ],
+    "env": {
+        "ENVIRONMENT": "@dev-environment"
+    },
+    "builds": [{ "src": "package.json", "use": "@now/next" }],
+    "routes": [
+        {
+            "src": "^/service-worker.js$",
+            "dest": "/_next/static/service-worker.js",
+            "headers": {
+                "cache-control": "public, max-age=43200, immutable",
+                "Service-Worker-Allowed": "/"
+            }
+        },
+        {
+            "src": "/(?<section>.+)/(?<articleId>[\\d]+)",
+            "dest": "/article?articleId=$articleId&section=$section"
+        },
+        {
+            "src": "/(?<section>.+)/(?<articleId>[\\d]+)/+(?<title>.*)$",
+            "dest": "/article?articleId=$articleId&section=$section&title=$title"
+        }
+    ],
+    "regions": ["bru"]
+}
