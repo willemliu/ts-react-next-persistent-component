@@ -12,22 +12,33 @@ function Article(props: any) {
     return (
         <>
             <Head>
-                <title>BNR Article {props.articleId}- persistent component</title>
+                <title>
+                    BNR Article {props.articleId}- persistent component
+                </title>
             </Head>
-            <Header/>
+            <Header />
             <div className="body">
                 <h1>Article page</h1>
-                <p>ID: {props.articleId}</p>
+                {props.articleId ? <p>ID: {props.articleId}</p> : null}
+                {props.section ? <p>SECTION: {props.section}</p> : null}
+                {props.title ? <p>TITLE: {props.title}</p> : null}
             </div>
         </>
     );
 }
 
-Article.getInitialProps = async ({query}: any) => {
-    Log.info({client: getClient(), view: 'article', server: getIsServer(), articleId: query.articleId});
+Article.getInitialProps = async ({ query }: any) => {
+    Log.info({
+        client: getClient(),
+        view: "article",
+        server: getIsServer(),
+        articleId: query.articleId
+    });
 
     return {
-        articleId: query.articleId
+        articleId: query.articleId,
+        section: query.section,
+        title: query.title
     };
 };
 
