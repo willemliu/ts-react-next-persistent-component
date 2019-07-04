@@ -1,4 +1,4 @@
-import { StoreBase, AutoSubscribeStore, autoSubscribe } from 'resub';
+import { StoreBase, AutoSubscribeStore, autoSubscribe } from "resub";
 
 export interface YoutubeState {
     isPlaying?: boolean;
@@ -11,7 +11,7 @@ export interface YoutubeState {
  */
 @AutoSubscribeStore
 class YoutubeStore extends StoreBase {
-    private youtubeId: string = '';
+    private youtubeId: string = "";
     private isPlaying: boolean = false;
 
     setIsPlaying() {

@@ -9,35 +9,47 @@ import { Log } from "../utils/log";
 declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
-    state: any = {youtubeId: ''};
+    state: any = { youtubeId: "" };
     private isBrowser = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
 
     constructor(props: any) {
         super(props);
         if (this.isBrowser) {
-            if (window.location.search.indexOf('isPwa=true') > -1) {
-                setClient('PWA');
+            if (window.location.search.indexOf("isPwa=true") > -1) {
+                setClient("PWA");
             }
         }
     }
 
     changeYoutubeId = (youtubeId: string) => {
-        Log.info({client: getClient(), newYoutubeId: youtubeId, oldYoutubeId: this.state.youtubeId});
+        Log.info({
+            client: getClient(),
+            newYoutubeId: youtubeId,
+            oldYoutubeId: this.state.youtubeId
+        });
         YoutubeStore.setYoutubeId(youtubeId);
-    }
+    };
 
     render() {
-        const {Component, pageProps} = this.props;
+        const { Component, pageProps } = this.props;
         return (
             <>
-                <GlobalStyle/>
+                <GlobalStyle />
                 <Component
                     {...pageProps}
                     isPlaying={this.state.isPlaying ? true : false}
-                    activeYoutubeId={this.state.youtubeId ? this.state.youtubeId : null}
+                    activeYoutubeId={
+                        this.state.youtubeId ? this.state.youtubeId : null
+                    }
                     onYoutubeIdChange={this.changeYoutubeId}
                 />
-                <YoutubeEmbed youtubeId={this.isBrowser ? this.state.youtubeId : pageProps.youtubeId}/>
+                <YoutubeEmbed
+                    youtubeId={
+                        this.isBrowser
+                            ? this.state.youtubeId
+                            : pageProps.youtubeId
+                    }
+                />
             </>
         );
     }
@@ -45,7 +57,7 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
     protected _buildState(props: any, initialBuild: boolean): YoutubeState {
         this.isBrowser = initialBuild ? this.state.useState : true;
         return {
-            initialYoutubeId: '',
+            initialYoutubeId: "",
             youtubeId: YoutubeStore.getYoutubeId(),
             isPlaying: YoutubeStore.getIsPlaying()
         };

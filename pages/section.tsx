@@ -41,9 +41,7 @@ export default function Section(props: any) {
                                 {}
                             );
                             Router.push(
-                                `/article?articleId=${map.articleId}&section=${
-                                    map.section
-                                }&title=${map.title}`,
+                                `/article?articleId=${map.articleId}&section=${map.section}&title=${map.title}`,
                                 href
                             );
                         } else {

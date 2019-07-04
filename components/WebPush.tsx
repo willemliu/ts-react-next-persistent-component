@@ -3,7 +3,9 @@ import { getClient } from "../utils/app";
 
 export default function handleWebPush() {
     if (!Notification) {
-        alert('Desktop notifications not available in your browser. Try Chromium.');
+        alert(
+            "Desktop notifications not available in your browser. Try Chromium."
+        );
         return;
     }
 
@@ -11,12 +13,15 @@ export default function handleWebPush() {
         Notification.requestPermission();
     } else {
         const notification = new Notification(`Push message`, {
-            icon: '/static/192x192.png',
-            body: 'Test push message'
+            icon: "/static/192x192.png",
+            body: "Test push message"
         });
 
         notification.onclick = () => {
-            Log.info({client: getClient(), message: `Go to ${window.location.href}`});
+            Log.info({
+                client: getClient(),
+                message: `Go to ${window.location.href}`
+            });
             notification.close();
         };
     }

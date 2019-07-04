@@ -1,5 +1,5 @@
 export let IS_SERVER = false;
-export let CLIENT = 'WEB';
+export let CLIENT = "WEB";
 
 export function setClient(client: string) {
     CLIENT = client;
