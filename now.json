@@ -1,16 +1,15 @@
 {
     "version": 2,
     "alias": [
-        "persistent-component.moviesom.com",
-        "persistent-component.willim.nl"
+        "ts-react-next-persistent-component-git-develop.willemliu.now.sh"
     ],
     "build": {
         "env": {
-            "ENVIRONMENT": "@environment"
+            "ENVIRONMENT": "@dev-environment"
         }
     },
     "env": {
-        "ENVIRONMENT": "@environment"
+        "ENVIRONMENT": "@dev-environment"
     },
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "routes": [
