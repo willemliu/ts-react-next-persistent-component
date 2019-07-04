@@ -1,6 +1,7 @@
 {
     "version": 2,
     "alias": [
+        "ts-react-next-persistent-component-develop.willemliu.now.sh",
         "ts-react-next-persistent-component-git-develop.willemliu.now.sh"
     ],
     "build": {
