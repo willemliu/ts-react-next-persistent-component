@@ -6,7 +6,7 @@
     "scripts": {
         "now-build": "next build",
         "deploy:dev": "now --target production",
-        "deploy:prod": "now --target production -A now.prod.json",
+        "deploy:prod": "cli-confirm \"Do you really release production? [y/n]\" && now --target production -A now.prod.json",
         "dev": "now dev",
         "export": "npm run now-build && next export",
         "lint": "eslint {components,pages,stores,utils}/**/*",
@@ -35,6 +35,7 @@
         "@typescript-eslint/parser": "^1.11.0",
         "@zeit/next-typescript": "^1.1.1",
         "babel-plugin-styled-components": "^1.10.0",
+        "cli-confirm": "^1.0.1",
         "compression": "^1.7.4",
         "copy-webpack-plugin": "^5.0.3",
         "cross-env": "^5.2.0",
