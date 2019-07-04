@@ -4,6 +4,11 @@
         "persistent-component.moviesom.com",
         "persistent-component.willim.nl"
     ],
+    "build": {
+        "env": {
+            "ENVIRONMENT": "@environment"
+        }
+    },
     "env": {
         "ENVIRONMENT": "@environment"
     },

@@ -36,6 +36,9 @@ module.exports = withTypescript(
                 ],
                 importScripts: ["/static/sw-push-listener.js"]
             },
+            env: {
+                ENVIRONMENT: process.env.ENVIRONMENT
+            },
             webpack: (config) => {
                 // this will output your push listener file to .next folder
                 // check CopyWebpackPlugin docs if you want to change the destination (e.g. /static or /.next/static)

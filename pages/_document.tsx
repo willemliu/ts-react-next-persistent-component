@@ -24,6 +24,7 @@ export default class MyDocument extends Document {
             const initialProps = await Document.getInitialProps(ctx);
             return {
                 ...initialProps,
+                ENVIRONMENT: process.env.ENVIRONMENT,
                 styles: [
                     ...(initialProps.styles as any),
                     ...sheet.getStyleElement()
