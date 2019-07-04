@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
         "now-build": "next build",
-        "deploy:dev": "now -A now.dev.json && now --target production -A now.dev.json",
+        "deploy:dev": "now --target production -A now.dev.json",
         "deploy:prod": "now --target production",
         "dev": "now dev",
         "export": "npm run now-build && next export",
