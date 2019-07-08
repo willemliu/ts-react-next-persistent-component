@@ -1,16 +1,20 @@
-import React, { PureComponent } from "react";
-import Head from "next/head";
-import Header from "../components/Header";
-import { Log } from "../utils/log";
-import { getClient, getIsServer } from "../utils/app";
+import React, { PureComponent } from 'react';
+import Head from 'next/head';
+import Header from '../components/Header';
+import { Log } from '../utils/log';
+import { getClient, getIsServer } from '../utils/app';
+
+export const config = {
+    amp: 'hybrid',
+};
 
 export default class Page2 extends PureComponent<any, any> {
     static async getInitialProps() {
-        Log.info({ client: getClient(), view: "page2", server: getIsServer() });
+        Log.info({ client: getClient(), view: 'page2', server: getIsServer() });
 
         return {
-            initialYoutubeId: "1roy4o4tqQM",
-            youtubeId: "1roy4o4tqQM"
+            initialYoutubeId: '1roy4o4tqQM',
+            youtubeId: '1roy4o4tqQM',
         };
     }
 

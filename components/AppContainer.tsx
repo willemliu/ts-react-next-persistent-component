@@ -1,22 +1,22 @@
-import React from "react";
-import YoutubeEmbed from "./YoutubeEmbed";
-import YoutubeStore, { YoutubeState } from "../stores/YoutubeStore";
-import { ComponentBase } from "resub";
-import { setClient, getClient } from "../utils/app";
-import { createGlobalStyle } from "styled-components";
-import { Log } from "../utils/log";
+import React from 'react';
+import YoutubeEmbed from './YoutubeEmbed';
+import YoutubeStore, { YoutubeState } from '../stores/YoutubeStore';
+import { ComponentBase } from 'resub';
+import { setClient, getClient } from '../utils/app';
+import { createGlobalStyle } from 'styled-components';
+import { Log } from '../utils/log';
 
 declare var process: any;
 
 export default class AppContainer extends ComponentBase<any, YoutubeState> {
-    state: any = { youtubeId: "" };
+    state: any = { youtubeId: '' };
     private isBrowser = !!process.browser; // We should use props when rendered on server. Use state when rendered in client.
 
     constructor(props: any) {
         super(props);
         if (this.isBrowser) {
-            if (window.location.search.indexOf("isPwa=true") > -1) {
-                setClient("PWA");
+            if (window.location.search.indexOf('isPwa=true') > -1) {
+                setClient('PWA');
             }
         }
     }
@@ -25,7 +25,7 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
         Log.info({
             client: getClient(),
             newYoutubeId: youtubeId,
-            oldYoutubeId: this.state.youtubeId
+            oldYoutubeId: this.state.youtubeId,
         });
         YoutubeStore.setYoutubeId(youtubeId);
     };
@@ -57,18 +57,22 @@ export default class AppContainer extends ComponentBase<any, YoutubeState> {
     protected _buildState(props: any, initialBuild: boolean): YoutubeState {
         this.isBrowser = initialBuild ? this.state.useState : true;
         return {
-            initialYoutubeId: "",
+            initialYoutubeId: '',
             youtubeId: YoutubeStore.getYoutubeId(),
-            isPlaying: YoutubeStore.getIsPlaying()
+            isPlaying: YoutubeStore.getIsPlaying(),
         };
     }
 }
 
 const GlobalStyle = createGlobalStyle`
+    html {
+        align-items: center;
+    }   
     html, body {
         display: flex;
         justify-content: space-around;
         overscroll-behavior: contain;
+        flex-direction: column;
     }
     body {
         margin: 0;

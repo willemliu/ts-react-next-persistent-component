@@ -1,8 +1,12 @@
-import React from "react";
-import { Head } from "next/document";
-import { withAmp, useAmp } from "next/amp";
-import { setClient, getClient } from "../utils/app";
-import { Log } from "../utils/log";
+import React from 'react';
+import { Head } from 'next/document';
+import { useAmp } from 'next/amp';
+import { setClient, getClient } from '../utils/app';
+import { Log } from '../utils/log';
+
+export const config = {
+    amp: 'hybrid',
+};
 
 const loggly = `var _LTracker = _LTracker || [];
 _LTracker.push({
@@ -11,9 +15,9 @@ _LTracker.push({
     'tag' : 'loggly-jslogger'
 });`;
 
-function AppHead(props: any) {
+export default function AppHead() {
     if (useAmp()) {
-        setClient("AMP");
+        setClient('AMP');
         Log.info({ client: getClient() });
     }
 
@@ -54,5 +58,3 @@ function AppHead(props: any) {
         </Head>
     );
 }
-
-export default withAmp(AppHead, { hybrid: true });

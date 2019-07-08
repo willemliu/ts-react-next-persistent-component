@@ -1,21 +1,27 @@
-import React from "react";
-import Link from "next/link";
-import { withAmp, useAmp } from "next/amp";
-import handleWebPush from "./WebPush";
-import styled from "styled-components";
+import React from 'react';
+import Link from 'next/link';
+import { useAmp } from 'next/amp';
+import handleWebPush from './WebPush';
+import styled from 'styled-components';
+
+declare var process: any;
 
 /**
  * Header component contains description about this App and the navigation links.
  */
-function Header() {
+export default function Header() {
     return (
         <>
             <p>
                 {process.env.ENVIRONMENT} This is an example project showcasing
-                the use of{" "}
-                <a rel="noopener" href="https://nextjs.org/" target="_blank">
+                the use of{' '}
+                <a
+                    rel="noopener noreferrer"
+                    href="https://nextjs.org/"
+                    target="_blank"
+                >
                     Next.JS
-                </a>{" "}
+                </a>{' '}
                 to create a persistant player which survives navigation.
             </p>
             <p>
@@ -25,9 +31,9 @@ function Header() {
                 paused or ended will update the video.
             </p>
             <p>
-                The player state is being maintained using{" "}
+                The player state is being maintained using{' '}
                 <a
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     href="https://github.com/Microsoft/ReSub"
                     target="_blank"
                 >
@@ -36,9 +42,9 @@ function Header() {
                 .
             </p>
             <p>
-                Styling done using{" "}
+                Styling done using{' '}
                 <a
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     href="https://www.styled-components.com"
                     target="_blank"
                 >
@@ -96,4 +102,6 @@ const ButtonContainer = styled.div`
     justify-content: space-between;
 `;
 
-export default withAmp(Header, { hybrid: true });
+export const config = {
+    amp: 'hybrid',
+};

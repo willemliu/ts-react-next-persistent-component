@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
-import Head from "next/head";
-import Header from "../components/Header";
-import { Log } from "../utils/log";
-import { getClient, getIsServer } from "../utils/app";
+import React, { useEffect } from 'react';
+import Head from 'next/head';
+import Header from '../components/Header';
+import { Log } from '../utils/log';
+import { getClient, getIsServer } from '../utils/app';
 
-function Article(props: any) {
+export const config = {
+    amp: 'hybrid',
+};
+
+export default function Article(props: any) {
     useEffect(() => {
         // Log.info({client: getClient(), view: 'article', articleId: props.articleId});
     });
@@ -30,16 +34,14 @@ function Article(props: any) {
 Article.getInitialProps = async ({ query }: any) => {
     Log.info({
         client: getClient(),
-        view: "article",
+        view: 'article',
         server: getIsServer(),
-        articleId: query.articleId
+        articleId: query.articleId,
     });
 
     return {
         articleId: query.articleId,
         section: query.section,
-        title: query.title
+        title: query.title,
     };
 };
-
-export default Article;

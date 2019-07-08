@@ -1,20 +1,22 @@
 {
-  "plugins": [
-    ["@babel/plugin-proposal-decorators", {
-      "legacy": true
-    }],
-    ["styled-components", { "ssr": true }]
-  ],
-  "presets": [
-    "@zeit/next-typescript/babel",
-    [
-      "next/babel",
-      {
-        "preset-env": {},
-        "transform-runtime": {},
-        "styled-jsx": { "optimizeForSpeed": true },
-        "class-properties": {}
-      }
+    "plugins": [
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        ["styled-components", { "ssr": true }]
+    ],
+    "presets": [
+        [
+            "next/babel",
+            {
+                "preset-env": {},
+                "transform-runtime": {},
+                "styled-jsx": { "optimizeForSpeed": true },
+                "class-properties": {}
+            }
+        ]
     ]
-  ]
 }

@@ -1,12 +1,16 @@
-import React from "react";
-import App, { Container } from "next/app";
-import AppContainer from "../components/AppContainer";
-import { ThemeProvider } from "styled-components";
+import React from 'react';
+import App, { Container } from 'next/app';
+import AppContainer from '../components/AppContainer';
+import { ThemeProvider } from 'styled-components';
+
+export const config = {
+    amp: 'hybrid',
+};
 
 const theme = {
     colors: {
-        primary: "#191919"
-    }
+        primary: '#191919',
+    },
 };
 
 export default class PersistentApp extends App {
