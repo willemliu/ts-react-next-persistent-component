@@ -7,7 +7,7 @@
         "now-build": "next build",
         "deploy:dev": "now --target production",
         "deploy:prod": "cli-confirm \"Do you really release production? [y/n]\" && now --target production -A now.prod.json",
-        "dev": "now dev",
+        "dev": "next",
         "export": "npm run now-build && next export",
         "lint": "eslint {components,pages,stores,utils}/**/*",
         "next": "next",
