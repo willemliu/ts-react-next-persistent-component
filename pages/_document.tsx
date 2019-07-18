@@ -12,6 +12,9 @@ export const config = {
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: any) {
+        // Enable lambda response caching on Edge CDN for Now
+        ctx.res.setHeader('Cache-Control', 's-maxage=43200, max-age=0');
+
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
