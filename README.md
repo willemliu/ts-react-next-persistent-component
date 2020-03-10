@@ -13,7 +13,6 @@ Add `?amp=1` to the end of the url to visit the AMP-ed page.
 Uses [styled-components](https://www.styled-components.com/) instead of the default styled-jsx.
 
 # demo
-Azure: https://persistent-component.azurewebsites.net/
 
 Zeit Now: https://ts-react-next-persistent-component.willemliu.now.sh/
 
