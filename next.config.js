@@ -36,7 +36,7 @@ module.exports = withBundleAnalyzer(
         env: {
             ENVIRONMENT: process.env.ENVIRONMENT,
         },
-        webpack: (config) => {
+        webpack: (config, options) => {
             // this will output your push listener file to .next folder
             // check CopyWebpackPlugin docs if you want to change the destination (e.g. /static or /.next/static)
             config.plugins.push(
@@ -50,6 +50,14 @@ module.exports = withBundleAnalyzer(
             config.node = {
                 fs: 'empty',
             };
+            if (!options.isServer) {
+                const chunkingDefaults = {
+                    minChunks: 2,
+                    reuseExistingChunk: true,
+                };
+                config.optimization.splitChunks.cacheGroups.default = chunkingDefaults;
+                config.optimization.splitChunks.minChunks = 2;
+            }
             return config;
         },
     })
